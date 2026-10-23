@@ -61,12 +61,35 @@ public class Main {
             }else{
                 if(estacion[filaRobot][columnaRobot] == 'X'){
                     System.out.println("MOVIMIENTO BLOQUEADO");
+                    if(desplazamiento == 'D'){
+                        columnaRobot--;
+                    }else if(desplazamiento == 'S') {
+                        filaRobot--;
+                    }else if(desplazamiento == 'W') {
+                        filaRobot++;
+                    }else if(desplazamiento == 'A') {
+                        columnaRobot++;
+                    }
                     continue;
                 }
                 if(estacion[filaRobot][columnaRobot] == 'B'){
                     vidas+=2;
+                    System.out.println("GANAS 2 VIDAS");
+                    if(desplazamiento == 'D'){
+                        estacion[filaRobot][columnaRobot - 1] = '*';
+                        estacion[filaRobot][columnaRobot] = ROBOT;
+                    }else if(desplazamiento == 'S') {
+                        estacion[filaRobot - 1][columnaRobot] = '*';
+                        estacion[filaRobot][columnaRobot] = ROBOT;
+                    }else if(desplazamiento == 'W') {
+                        estacion[filaRobot + 1][columnaRobot] = '*';
+                        estacion[filaRobot][columnaRobot] = ROBOT;
+                    }else if(desplazamiento == 'A') {
+                        estacion[filaRobot][columnaRobot + 1] = '*';
+                        estacion[filaRobot][columnaRobot] = ROBOT;
+                    }
                 }
-                if(estacion[filaRobot][columnaRobot] == 'F'){
+                if(estacion[filaRobot][columnaRobot] == 'M'){
                     break;
                 }
                 if(desplazamiento == 'D'){
@@ -104,5 +127,6 @@ public class Main {
             }
         }while (true);
         System.out.println("RESCATE COMPLETADO");
+        System.out.println("VIDAS FINALES: " +vidas);
     }
 }
